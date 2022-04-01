@@ -19,4 +19,12 @@ class WebsiteUser extends Model
         'user_id',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

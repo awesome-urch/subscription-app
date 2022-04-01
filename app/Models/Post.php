@@ -20,4 +20,12 @@ class Post extends Model
         'website_id',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function website()
+    {
+        return $this->belongsTo(Website::class);
+    }
+
 }
