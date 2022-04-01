@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use App\Website;
 use Illuminate\Http\Request;
 use App\Models\Website;
+use Validator;
 
 class WebsiteController extends Controller
 {
@@ -12,13 +13,19 @@ class WebsiteController extends Controller
 
     public function create(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|unique:categories'
-        // ]);
 
-        $category = Website::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'url' => 'required|url',
+        ]);
 
-        return response()->json($category, 201);
+        if($validator->fails()){
+            return response(['message' => 'Validation errors', 'errors' =>  $validator->errors(), 'status' => false], 422);
+        }
+
+        $website = Website::create($request->all());
+
+        return response()->json($website, 201);
     }
 
     public function check(){

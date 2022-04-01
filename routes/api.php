@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/check', [WebsiteController::class, 'check']);
+Route::post('/users', [UserController::class, 'create']);
 
 Route::post('/websites', [WebsiteController::class, 'create']);
+
+Route::post('/posts', [PostController::class, 'create']);
+
+Route::post('/subscribe', [UserController::class, 'subscribeToWebsite']);
+
+//subscribeToWebsite
 
