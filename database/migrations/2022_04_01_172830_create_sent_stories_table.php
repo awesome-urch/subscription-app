@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSentStoryTable extends Migration
+class CreateSentStoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSentStoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('sent_story', function (Blueprint $table) {
+        Schema::create('sent_stories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -28,6 +28,6 @@ class CreateSentStoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sent_story');
+        Schema::dropIfExists('sent_stories');
     }
 }
